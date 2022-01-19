@@ -1,6 +1,10 @@
 import pandas as pd
 import streamlit as st
 
+st.header('Sitemap URL extractor')
+
+st.subheader('This script extracts URLs from one or more sitemaps and adds them to a CSV file, ready to download.')
+
 sitemap_urls = st.text_area('Enter individual sitemap URLs, 1 per line')
 
 submit = st.button('Submit')
