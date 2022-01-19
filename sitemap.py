@@ -12,8 +12,6 @@ if submit:
 	sitemap_df = pd.DataFrame()
 
 	for url in sitemap_url_list:
-		
-		url = url.replace(" ","%20")
 
 		df = pd.read_xml(url)
 
