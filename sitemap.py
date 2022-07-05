@@ -1,4 +1,5 @@
 import pandas as pd
+import advertools as adv
 import streamlit as st
 
 st.header('Sitemap URL extractor')
@@ -13,14 +14,10 @@ if submit:
 
 	sitemap_url_list = [line for line in sitemap_urls.split("\n")]
 
-	sitemap_df = pd.DataFrame()
-
 	for url in sitemap_url_list:
 
-		df = pd.read_xml(url)
+		sitemap_df = adv.sitemap_to_df(url)
 
-		sitemap_df = sitemap_df.append(df, ignore_index=True)
+		sitemap_csv = sitemap_df.to_csv()
 
-	sitemap_csv = sitemap_df.to_csv()
-
-	st.download_button(label='Download CSV', data=sitemap_csv, file_name='sitemaps.csv', mime='text/csv')
+	st.download_button(label=f'Download {url} CSV', data=sitemap_csv, file_name=f'{url}_sitemap.csv', mime='text/csv')
